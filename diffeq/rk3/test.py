@@ -27,3 +27,7 @@ class RungeKutta3(unittest.TestCase):
         actual_y = rk3(dxdy, test_step, test_x0, test_x1, test_y0)
 
         self.assertAlmostEquals(expected_y, actual_y, delta=get_test_error(test_step))
+
+
+if __name__ == '__main__':
+    unittest.main()
