@@ -20,9 +20,9 @@ def rk3(dxdy: Callable, h: float, x0: float, x1: float, y: array) -> float:
     yi = copy(y)
 
     for xi in x_space[1:]:
-        k1i = h * dxdy(yi, xi)
-        k2i = h * dxdy(yi + h * 0.5 * k1i, xi + h * 0.5)
-        k3i = h * dxdy(yi - h * k1i + h * 2.0 * k2i, xi + h * 0.5)
+        k1i = h * dxdy(xi, yi)
+        k2i = h * dxdy(xi + h * 0.5, yi + h * 0.5 * k1i)
+        k3i = h * dxdy(xi + h * 0.5, yi - h * k1i + h * 2.0 * k2i)
 
         yi += (k1i + 4.0 * k2i + k3i) / 6.0
 
