@@ -20,6 +20,14 @@ def dx_dy_second_order(x: float, y: array) -> array:
     return array([y[1], -2.0 * y[1] - 2.0 * y[0] + x * exp(x)])  # z = y'
 
 
+@pytest.fixture(scope="function", params=[
+    (-2.0, 0.0, -0.28994),
+    (1.0, 4.0, 34.93017),
+    (-2.0, 2.0, 1.78479)])
+def second_order_equation_param(request):
+    return request.param
+
+
 @pytest.mark.parametrize("step", [0.1, 0.01, 0.0001])
 def test_should_solve_second_order_equation_for_different_step_size(step):
     # arrange
@@ -33,3 +41,16 @@ def test_should_solve_second_order_equation_for_different_step_size(step):
 
     # assert
     assert fabs(expected_y - actual_y) < get_test_error(step)
+
+
+def test_should_solve_second_order_equation_for_different_arguments(second_order_equation_param):
+    # arrange
+    (x0, x1, y) = second_order_equation_param
+    test_step = 0.001
+    y0 = [0.1, -1.2]
+
+    # act
+    actual_y = rk3(dx_dy_second_order, test_step, x0, x1, y0)
+
+    # assert
+    assert fabs(y - actual_y) < get_test_error(test_step)
