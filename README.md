@@ -4,5 +4,5 @@ A collection of algorithms of numerical physics from courses implemented in Pyth
 
 ## List
 
-* [Differential Equations](./differential-equations/)
-    * [Runge Kutta 3rd order](./differential-equations/rk3/)
+* [Differential Equations](./diffeq/)
+    * [Runge Kutta 3rd order](./diffeq/rk3/)
