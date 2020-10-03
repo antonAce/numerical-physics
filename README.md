@@ -1,8 +1,8 @@
 # :snake: Numerical physics in Python
 
-A collection of algorithms of numerical physics from courses implemented in Python
+A collection of algorithms and usage examples of numerical physics from courses implemented in Python
 
-## List
+## Algorithms
 
-* [Differential Equations](./diffeq/)
-    * [Runge Kutta 3rd order](./diffeq/rk3/)
+* [Differential Equations](algorithms/diffeq)
+    * [Runge Kutta 3rd order](algorithms/diffeq/rk3/algo.py)

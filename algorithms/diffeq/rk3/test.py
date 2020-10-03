@@ -1,7 +1,7 @@
 from math import pow, fabs
 from numpy import array, exp
 
-from diffeq.rk3.algo import rk3
+from algorithms.diffeq.rk3.algo import rk3
 
 import pytest
 

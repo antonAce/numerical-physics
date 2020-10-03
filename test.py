@@ -1,1 +1,1 @@
-from diffeq.rk3.test import *
+from algorithms.diffeq.rk3.test import *
