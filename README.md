@@ -6,3 +6,4 @@ A collection of algorithms and usage examples of numerical physics from courses 
 
 * [Differential Equations](algorithms/diffeq)
     * [Runge Kutta 3rd order](algorithms/diffeq/rk3/algo.py)
+    * [Runge Kutta 4th order](algorithms/diffeq/rk4/algo.py)
