@@ -3,10 +3,10 @@ from numpy import linspace, array, copy
 from math import ceil
 
 
-def rk3(dxdy: Callable, h: float, x0: float, x1: float, y: array) -> float:
+def rk4(dxdy: Callable, h: float, x0: float, x1: float, y: array) -> float:
     """
     Solves numerically differential equation **dxdy** using
-    Runge Kutta 3rd order method and returns y(**x1**)
+    Runge Kutta 4th order method and returns y(**x1**)
 
     :param dxdy: system of differential equations y', y'', ...
     :param h: step size
@@ -23,8 +23,9 @@ def rk3(dxdy: Callable, h: float, x0: float, x1: float, y: array) -> float:
     for xi in x_space[1:]:
         k1i = h * dxdy(xi, yi)
         k2i = h * dxdy(xi + h * 0.5, yi + h * 0.5 * k1i)
-        k3i = h * dxdy(xi + h * 0.5, yi - h * k1i + h * 2.0 * k2i)
+        k3i = h * dxdy(xi + h * 0.5, yi + h * 0.5 * k2i)
+        k4i = h * dxdy(xi + h, yi + h * k3i)
 
-        yi += (k1i + 4.0 * k2i + k3i) / 6.0
+        yi += (k1i + 2.0 * k2i + 2.0 * k3i + k4i) / 6.0
 
     return yi[0]
