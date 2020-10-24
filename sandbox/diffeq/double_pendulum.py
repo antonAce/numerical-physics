@@ -1,5 +1,4 @@
 from numpy import sin, cos, power
-from PyQt5 import QtGui, QtWidgets
 
 
 class Rod:
