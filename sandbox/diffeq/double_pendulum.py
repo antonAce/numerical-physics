@@ -1,14 +1,15 @@
 from numpy import sin, cos, power
+from p5 import *
 
 
 class Rod:
     def __init__(self,
                  mass: float,
-                 radians: float,
+                 radian: float,
                  velocity: float,
                  acceleration: float):
         self.mass = mass
-        self.radians = radians
+        self.radian = radian
         self.velocity = velocity
         self.acceleration = acceleration
 
@@ -27,34 +28,33 @@ def calculate_acceleration(
     :return: acceleration diffs for both upper and lower rod of the pendulum
     """
     return (
-        (-g * (2 * upper_rod.mass + lower_rod.mass) * sin(upper_rod.radians) - lower_rod.mass * g *
-         sin(upper_rod.radians - 2 * lower_rod.radians) -
-         2 * sin(upper_rod.radians - lower_rod.radians) * lower_rod.mass
-         * (power(lower_rod.velocity, 2) * lower_rod.radians + power(upper_rod.velocity, 2) * upper_rod.radians *
-            cos(upper_rod.radians - lower_rod.radians))) /
-        (upper_rod.radians * (2 * upper_rod.mass + lower_rod.mass - lower_rod.mass * cos(
-            2 * upper_rod.radians - 2 * lower_rod.radians))),
-        (2 * sin(upper_rod.radians - lower_rod.radians) * (power(upper_rod.velocity, 2) * upper_rod.radians *
+        (-g * (2 * upper_rod.mass + lower_rod.mass) * sin(upper_rod.radian) - lower_rod.mass * g *
+         sin(upper_rod.radian - 2 * lower_rod.radian) -
+         2 * sin(upper_rod.radian - lower_rod.radian) * lower_rod.mass
+         * (power(lower_rod.velocity, 2) * lower_rod.radian + power(upper_rod.velocity, 2) * upper_rod.radian *
+            cos(upper_rod.radian - lower_rod.radian))) /
+        (upper_rod.radian * (2 * upper_rod.mass + lower_rod.mass - lower_rod.mass * cos(
+            2 * upper_rod.radian - 2 * lower_rod.radian))),
+        (2 * sin(upper_rod.radian - lower_rod.radian) * (power(upper_rod.velocity, 2) * upper_rod.radian *
                                                            (upper_rod.mass + lower_rod.mass) + g * (
                                                                    upper_rod.mass + lower_rod.mass) * cos(
-                    upper_rod.radians) + power(lower_rod.velocity, 2) * lower_rod.radians * lower_rod.mass * cos(
-                    upper_rod.radians - lower_rod.radians))) / (lower_rod.radians *
+                    upper_rod.radian) + power(lower_rod.velocity, 2) * lower_rod.radian * lower_rod.mass * cos(
+                    upper_rod.radian - lower_rod.radian))) / (lower_rod.radian *
                                                                 (2 * upper_rod.mass + lower_rod.mass - lower_rod.mass *
-                                                                 cos(2 * upper_rod.radians - 2 * lower_rod.radians)))
+                                                                 cos(2 * upper_rod.radian - 2 * lower_rod.radian)))
     )
 
 
-class DoublePendulum(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
+def setup():
+    title('Double pendulum')
+    size(600, 600)
 
-        self.label = QtWidgets.QLabel()
-        canvas = QtGui.QPixmap(400, 300)
-        self.label.setPixmap(canvas)
-        self.setCentralWidget(self.label)
-        self.draw_something()
 
-    def draw_something(self):
-        painter = QtGui.QPainter(self.label.pixmap())
-        painter.drawLine(10, 10, 300, 200)
-        painter.end()
+def draw():
+    background(255)
+    stroke(0)
+    stroke_weight(2)
+    translate(300, 50)
+
+
+run()

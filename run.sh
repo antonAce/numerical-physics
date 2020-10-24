@@ -1,3 +1,3 @@
 #!/bin/bash
 source venv/bin/activate
-python -m sandbox.main
+python -m sandbox.diffeq.double_pendulum
